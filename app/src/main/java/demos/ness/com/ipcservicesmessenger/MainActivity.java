@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +16,8 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private Handler mHandler;
     private TextView tvResponse;
     private EditText etMessage;
@@ -81,13 +81,14 @@ public class MainActivity extends ActionBarActivity {
     private static class MainActivityHandler extends Handler {
         private WeakReference<MainActivity> main;
 
+
         public MainActivityHandler(MainActivity main) {
-            this.main = new WeakReference<MainActivity>(main);
+            this.main = new WeakReference<>(main);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            Log.d("Tomer", "Got Message back from service: " + msg.obj.toString());
+            Log.d(TAG, "Got Message back from service: " + msg.obj.toString());
             if (main.get() != null) {
                 MainActivity m = main.get();
                 m.tvResponse.setText(msg.obj.toString());

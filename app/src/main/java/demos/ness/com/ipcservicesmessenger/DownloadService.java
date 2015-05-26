@@ -12,6 +12,9 @@ import android.util.Log;
  * a service on a separate handler thread.
  */
 public class DownloadService extends IntentService {
+
+    static final String TAG = "DownloadService";
+
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      */
@@ -23,33 +26,29 @@ public class DownloadService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("Tomer","onCreate");
+        Log.d(TAG, "onCreate");
     }
-
 
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String message = intent.getStringExtra("Message");
-        Log.d("Tomer","onStartCommand: " + message);
+        Log.d(TAG, "onStartCommand: " + message);
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("Tomer", "onDestroy");
+        Log.d(TAG, "onDestroy");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         String message = intent.getStringExtra("Message");
-        Log.d("Tomer","onHandleIntent: " + message);
-        if (intent != null) {
-            Messenger origin = intent.getParcelableExtra("messenger");
-
-            doWork(origin, message);
-        }
+        Log.d(TAG, "onHandleIntent: " + message);
+        Messenger origin = intent.getParcelableExtra("messenger");
+        doWork(origin, message);
     }
 
     private void doWork(Messenger origin, String message) {
