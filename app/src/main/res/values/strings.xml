@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IPCServicesMessenger</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_send_message">Send Message</string>
+    <string name="tv_response">Response</string>
+    <string name="et_message_hint">Message</string>
+</resources>
